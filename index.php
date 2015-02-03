@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 /**
  * Steam Web PHP API
  *
@@ -68,7 +69,7 @@ function get($app, $endpoint)
     	}
         $app->response->headers->set($key, $value);
     }
-
+    header("Content-Type: application/json");
     echo $response->raw_body;
 }
 
@@ -76,68 +77,38 @@ function get($app, $endpoint)
 * ISteamUser
 *******************************************************************************/
 
-$app->group('/ISteamUser', function () use ($app) {
+$app->group('/user', function () use ($app) {
 
-    $app->group('/GetPlayerSummaries', function () use ($app) {
+    $app->get('/', function () use ($app) {
+        get($app, '/ISteamUser/GetPlayerSummaries/v0002/');
+    });
 
-        $app->get('/v0002/', function () use ($app) {
-            get($app, '/ISteamUser/GetPlayerSummaries/v0002/');
+    $app->get('/friends', function () use ($app) {
+
+        get($app, '/ISteamUser/GetFriendList/v0001/');
+
+    });
+
+    $app->group('/games', function () use ($app) {
+
+        $app->get('/owned/', function () use ($app) {
+            get($app, '/IPlayerService/GetOwnedGames/v0001/?include_appinfo=1');
+        });
+
+        $app->get('/recent/', function () use ($app) {
+            get($app, '/IPlayerService/GetRecentlyPlayedGames/v0001/?include_appinfo=1');
         });
 
     });
 
-    $app->group('/GetFriendList', function () use ($app) {
+    $app->group('/game', function() use ($app) {
 
-        $app->get('/v0001/', function () use ($app) {
-            get($app, '/ISteamUser/GetFriendList/v0001/');
+        $app->get('/:id/achievements/', function ($id) use ($app) {
+            get($app, '/ISteamUserStats/GetPlayerAchievements/v0001/?appid='.$id);
         });
 
-    });
-
-});
-
-/********************************************************************************
-* ISteamUserStats
-*******************************************************************************/
-
-$app->group('/ISteamUserStats', function () use ($app) {
-
-    $app->group('/GetUserStatsForGame', function () use ($app) {
-
-        $app->get('/v0002/', function () use ($app) {
-            get($app, '/ISteamUserStats/GetUserStatsForGame/v0002/');
-        });
-
-    });
-
-    $app->group('/GetPlayerAchievements', function () use ($app) {
-
-        $app->get('/v0001/', function () use ($app) {
-            get($app, '/ISteamUserStats/GetPlayerAchievements/v0001/');
-        });
-
-    });
-
-});
-
-/********************************************************************************
-* IPlayerService
-*******************************************************************************/
-
-$app->group('/IPlayerService', function () use ($app) {
-
-    $app->group('/GetOwnedGames', function () use ($app) {
-
-        $app->get('/v0001/', function () use ($app) {
-            get($app, '/IPlayerService/GetOwnedGames/v0001/');
-        });
-
-    });
-
-    $app->group('/GetRecentlyPlayedGames', function () use ($app) {
-
-        $app->get('/v0001/', function () use ($app) {
-            get($app, '/IPlayerService/GetRecentlyPlayedGames/v0001/');
+        $app->get('/:id/stats/', function ($id) use ($app) {
+            get($app, '/ISteamUserStats/GetUserStatsForGame/v0002/?appid='.$id);
         });
 
     });
