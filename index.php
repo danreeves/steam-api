@@ -77,9 +77,9 @@ function get($app, $endpoint)
 * ISteamUser
 *******************************************************************************/
 
-$app->group('/user', function () use ($app) {
+$app->group('/api', function () use ($app) {
 
-    $app->get('/', function () use ($app) {
+    $app->get('/stats', function () use ($app) {
         get($app, '/ISteamUser/GetPlayerSummaries/v0002/');
     });
 
