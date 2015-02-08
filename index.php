@@ -69,8 +69,6 @@ function get($app, $endpoint)
     	}
         $app->response->headers->set($key, $value);
     }
-    header("Content-Type: application/json", false);
-    header("Access-Control-Allow-Origin: *", false);
     echo $response->raw_body;
 }
 
