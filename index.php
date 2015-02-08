@@ -43,6 +43,11 @@ $app->get(
     }
 );
 
+// Allow OPTIONS
+$app->map('/:x+', function($x) {
+    http_response_code(200);
+})->via('OPTIONS');
+
 // Do nothing when we don't find an API endpoint
 $app->notFound(function () {
 });
