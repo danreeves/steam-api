@@ -1,0 +1,10 @@
+web:
+    build: .
+    dockerfile: .dockerfile
+    volumes:
+        - ./:/usr/src/app
+        - /usr/src/app/node_modules
+    ports:
+        - "80:80"
+    env_file: .env
+    command: npm start

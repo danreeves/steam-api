@@ -1,12 +1,27 @@
-If you want to use this, replace the key & id in the config file with your own.
+# Steam API
 
-# URLs
+```sh
+git clone https://github.com/danreeves/steam-api
+docker-compose build
+docker-compose up
+```
+
+For local use create a `.env` file like:
 
 ```
-/api/stats/ -> user stats
-/api/friends/ -> list of users friends
-/api/games/owned/ -> list of owned games
-/api/games/recent/ -> list of games recently played
-/api/game/:id/stats/ -> users stats for game
-/api/game/:id/achievements/ -> users achievements for game
+STEAM_WEB_API_KEY=XXXXXXXXXXXXXXX
+STEAM_USER_ID=XXXXXXXXXXXXXXXXXXX
+NODE_ENV=development
 ```
+
+For deployment, set the same variables in the environment.
+
+
+## Routes
+
+    /api/stats
+    /api/friends
+    /api/games/owned
+    /api/games/recent
+    /api/game/{id}/stats
+    /api/game/{id}/achievements
