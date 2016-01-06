@@ -11,11 +11,11 @@ const server = new Hapi.Server({
         router: {
             stripTrailingSlash: true,
         },
+        routes: { cors: true },
     },
 });
 server.connection({
-    port: process.env.PORT || 3000,
-    routes: { cors: true },
+    port: process.env.PORT || 3000
 });
 server.start(() => console.log('Server running at:', server.info.uri));
 
