@@ -13,7 +13,10 @@ const server = new Hapi.Server({
         },
     },
 });
-server.connection({ port: process.env.PORT || 3000 });
+server.connection({
+    port: process.env.PORT || 3000,
+    routes: { cors: true },
+});
 server.start(() => console.log('Server running at:', server.info.uri));
 
 // /api/stats
