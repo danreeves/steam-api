@@ -13,7 +13,7 @@ const server = new Hapi.Server({
         },
     },
 });
-server.connection({ port: 80 });
+server.connection({ port: 3000 });
 server.start(() => console.log('Server running at:', server.info.uri));
 
 // /api/stats
