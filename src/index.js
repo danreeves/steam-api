@@ -24,7 +24,7 @@ server.start(() => console.log('Server running at:', server.info.uri));
 
 // /api/stats
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
@@ -46,7 +46,7 @@ server.route({
 
 // /api/friends
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
@@ -69,7 +69,7 @@ server.route({
 
 // /api/games/owned
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
@@ -91,7 +91,7 @@ server.route({
 
 // /api/games/recent
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
@@ -113,7 +113,7 @@ server.route({
 
 // /api/game/{id}/stats
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
@@ -136,7 +136,7 @@ server.route({
 
 // /api/game/{id}/achievements
 server.route({
-    settings: {
+    config: {
         cors: true,
     },
     method: 'GET',
