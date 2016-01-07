@@ -11,22 +11,15 @@ const server = new Hapi.Server({
         router: {
             stripTrailingSlash: true,
         },
-        routes: {
-            cors: true,
-        },
     },
 });
 server.connection({
     port: process.env.PORT || 3000,
-    routes: { cors: true },
 });
 server.start(() => console.log('Server running at:', server.info.uri));
 
 // /api/stats
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/stats',
     handler: (request, reply) => {
@@ -46,9 +39,6 @@ server.route({
 
 // /api/friends
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/friends',
     handler: (request, reply) => {
@@ -69,9 +59,6 @@ server.route({
 
 // /api/games/owned
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/games/owned',
     handler: (request, reply) => {
@@ -91,9 +78,6 @@ server.route({
 
 // /api/games/recent
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/games/recent',
     handler: (request, reply) => {
@@ -113,9 +97,6 @@ server.route({
 
 // /api/game/{id}/stats
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/game/{id}/stats',
     handler: (request, reply) => {
@@ -136,9 +117,6 @@ server.route({
 
 // /api/game/{id}/achievements
 server.route({
-    config: {
-        cors: true,
-    },
     method: 'GET',
     path: '/api/game/{id}/achievements',
     handler: (request, reply) => {
